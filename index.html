@@ -4,19 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IntegraCode Coop | Cooperativa Universitaria de Tecnología</title>
-<meta name="description" content="IntegraCode Coop: cooperativa universitaria de tecnología. Soporte técnico, redes, desarrollo web y apps a precios justos. Únete y haz crecer tu experiencia profesional.">
+<meta name="description" content="IntegraCode Coop: cooperativa universitaria de tecnología. Soporte técnico, redes, desarrollo web y apps a precios justos. Conoce también EcoDesk, nuestra línea de kits de limpieza ecológicos.">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
-<!-- FontAwesome -->
+<!-- FontAwesome (CDN para los íconos) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+/* ============================================================
+   1. VARIABLES Y RESET
+   ============================================================ */
 :root{
-  /* Paleta principal */
   --azul-900:#061729;
   --azul-800:#0B2545;
   --azul-700:#123A63;
@@ -38,11 +40,9 @@
   --gris-700:#334155;
   --blanco:#FFFFFF;
 
-  /* Tipografía */
   --font-body:'Inter', system-ui, -apple-system, sans-serif;
   --font-head:'Poppins', 'Inter', sans-serif;
 
-  /* Formas y sombras */
   --radius:16px;
   --radius-sm:12px;
   --radius-lg:24px;
@@ -72,6 +72,7 @@ body{
   font-size:16px;
   overflow-x:hidden;
 }
+body.no-scroll{overflow:hidden;}
 
 img,svg{display:block;max-width:100%;}
 a{text-decoration:none;color:inherit;}
@@ -211,7 +212,7 @@ h1,h2,h3,h4{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:1.5rem;
+  gap:1.2rem;
   width:min(100% - 2.5rem, var(--max-width));
 }
 
@@ -247,7 +248,7 @@ h1,h2,h3,h4{
 .nav-links{
   display:flex;
   align-items:center;
-  gap:2rem;
+  gap:1.6rem;
 }
 .nav-links a:not(.nav-cta){
   font-size:.93rem;
@@ -256,6 +257,7 @@ h1,h2,h3,h4{
   position:relative;
   padding:.3rem 0;
   transition:var(--transition);
+  white-space:nowrap;
 }
 .nav-links a:not(.nav-cta)::after{
   content:'';
@@ -278,11 +280,50 @@ h1,h2,h3,h4{
   font-weight:600;
   box-shadow:0 8px 20px rgba(14,159,110,.28);
   transition:var(--transition);
+  white-space:nowrap;
 }
 .nav-cta:hover{
   transform:translateY(-2px);
   box-shadow:0 14px 28px rgba(14,159,110,.4);
 }
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+
+.cart-btn{
+  position:relative;
+  width:44px;height:44px;
+  display:grid;place-items:center;
+  background:var(--gris-100);
+  border:none;
+  border-radius:12px;
+  color:var(--azul-800);
+  font-size:1.05rem;
+  cursor:pointer;
+  transition:var(--transition);
+}
+.cart-btn:hover{background:var(--verde-100);color:var(--verde-700);}
+.cart-count{
+  position:absolute;
+  top:-6px;right:-6px;
+  min-width:20px;height:20px;
+  padding:0 5px;
+  border-radius:100px;
+  background:var(--verde-500);
+  color:#fff;
+  font-size:.7rem;
+  font-weight:700;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+}
+.cart-count.show{display:flex;}
+.cart-btn.bump{animation:bump .4s ease;}
+@keyframes bump{0%,100%{transform:scale(1);}50%{transform:scale(1.18);}}
 
 .hamburger{
   display:none;
@@ -669,6 +710,605 @@ h1,h2,h3,h4{
   box-shadow:var(--shadow-sm);
 }
 
+/* =========================================================
+   NUESTRA EMPRESA (EcoDesk)
+   ========================================================= */
+.empresa-intro{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  margin:-20px auto 56px;
+  flex-wrap:wrap;
+}
+.empresa-marca{
+  display:inline-flex;
+  align-items:center;
+  gap:.8rem;
+  background:#fff;
+  border:1px solid var(--gris-200);
+  border-radius:100px;
+  padding:.6rem 1.4rem .6rem .7rem;
+  box-shadow:var(--shadow-sm);
+}
+.empresa-marca .eco-mark{
+  width:40px;height:40px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--verde-400),var(--verde-700));
+  color:#fff;
+  display:grid;place-items:center;
+  font-size:1rem;
+}
+.empresa-marca strong{
+  font-family:var(--font-head);
+  font-size:1.1rem;
+  color:var(--azul-800);
+  letter-spacing:-.02em;
+}
+.empresa-marca span{font-size:.8rem;color:var(--gris-500);display:block;line-height:1.2;}
+
+.empresa-mv{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));
+  gap:2rem;
+  margin-bottom:4rem;
+}
+.empresa-mv .pilar-card:nth-child(1) .pilar-icon{background:var(--verde-100);color:var(--verde-700);}
+.empresa-mv .pilar-card:nth-child(2) .pilar-icon{background:var(--azul-100);color:var(--azul-700);}
+
+.porque-head{
+  text-align:center;
+  max-width:700px;
+  margin:0 auto 2.6rem;
+}
+.porque-head h3{
+  font-size:clamp(1.5rem,3vw,2rem);
+  margin-bottom:.8rem;
+}
+.porque-head p{color:var(--gris-500);}
+
+.porque-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap:1.8rem;
+  margin-bottom:4rem;
+}
+.porque-card{
+  background:#fff;
+  border:1px solid var(--gris-200);
+  border-radius:var(--radius-lg);
+  padding:2.2rem 2rem;
+  box-shadow:var(--shadow-sm);
+  position:relative;
+  transition:var(--transition);
+}
+.porque-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-md);
+  border-color:var(--verde-100);
+}
+.porque-num{
+  font-family:var(--font-head);
+  font-weight:800;
+  font-size:2.6rem;
+  line-height:1;
+  margin-bottom:1rem;
+  background:linear-gradient(135deg,var(--verde-300),var(--azul-600));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  opacity:.9;
+}
+.porque-card h4{
+  font-size:1.12rem;
+  margin-bottom:.7rem;
+}
+.porque-card p{
+  font-size:.94rem;
+  color:var(--gris-500);
+}
+
+/* Proyección y Costos */
+.proyeccion-box{
+  background:linear-gradient(135deg, var(--azul-800), var(--azul-900));
+  color:#fff;
+  border-radius:var(--radius-lg);
+  padding:3rem;
+  box-shadow:var(--shadow-lg);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+  align-items:center;
+}
+.proyeccion-content h3{
+  color:#fff;
+  font-size:1.8rem;
+  margin-bottom:1rem;
+}
+.proyeccion-content p{
+  color:rgba(255,255,255,.75);
+  margin-bottom:1.5rem;
+  font-size:.95rem;
+}
+.proyeccion-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+}
+.p-stat{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:var(--radius);
+  padding:1.2rem;
+  text-align:center;
+}
+.p-stat strong{
+  display:block;
+  font-family:var(--font-head);
+  font-size:1.5rem;
+  color:var(--verde-300);
+  line-height:1.2;
+  margin-bottom:.3rem;
+}
+.p-stat span{
+  font-size:.75rem;
+  color:rgba(255,255,255,.7);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+/* =========================================================
+   PRODUCTO ECODESK
+   ========================================================= */
+.demo-banner{
+  display:flex;
+  align-items:flex-start;
+  gap:.8rem;
+  max-width:860px;
+  margin:0 auto 3rem;
+  background:#FFFBEB;
+  border:1px solid #FDE68A;
+  color:#92400E;
+  border-radius:var(--radius-sm);
+  padding:.9rem 1.2rem;
+  font-size:.86rem;
+  line-height:1.55;
+}
+.demo-banner i{margin-top:.2rem;}
+
+.producto{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:3.5rem;
+  align-items:start;
+}
+
+.galeria-main{
+  position:relative;
+  aspect-ratio:1/1;
+  background:linear-gradient(145deg,#ECFDF5 0%,#E4EDF6 100%);
+  border-radius:var(--radius-lg);
+  border:1px solid var(--gris-200);
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  box-shadow:var(--shadow-md);
+}
+.galeria-main img{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+}
+.img-placeholder{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.8rem;
+  color:var(--verde-700);
+  text-align:center;
+  padding:1rem;
+}
+.img-placeholder i{font-size:3.2rem;opacity:.8;}
+.img-placeholder span{font-size:.8rem;font-weight:600;color:var(--gris-500);letter-spacing:.04em;}
+
+.tag-eco{
+  position:absolute;
+  top:1.1rem;left:1.1rem;
+  z-index:3;
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  background:#fff;
+  color:var(--verde-700);
+  font-size:.74rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  padding:.4rem .85rem;
+  border-radius:100px;
+  box-shadow:var(--shadow-sm);
+}
+
+.galeria-thumbs{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:.9rem;
+  margin-top:1rem;
+}
+.thumb{
+  position:relative;
+  aspect-ratio:1/1;
+  border-radius:var(--radius-sm);
+  border:2px solid var(--gris-200);
+  background:linear-gradient(145deg,#ECFDF5 0%,#E4EDF6 100%);
+  overflow:hidden;
+  cursor:pointer;
+  padding:0;
+  display:grid;place-items:center;
+  color:var(--verde-700);
+  transition:var(--transition);
+}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.thumb:hover{border-color:var(--verde-400);}
+.thumb.active{border-color:var(--verde-500);box-shadow:0 0 0 3px rgba(16,185,129,.18);}
+.thumb i{font-size:1.2rem;opacity:.7;}
+
+.producto-info .marca-linea{
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--verde-600);
+  margin-bottom:.6rem;
+}
+.producto-info h3{
+  font-size:clamp(1.7rem,3.4vw,2.3rem);
+  margin-bottom:.8rem;
+}
+.producto-info .desc{
+  color:var(--gris-500);
+  margin-bottom:1.6rem;
+  font-size:1rem;
+}
+
+.precio-box{
+  display:flex;
+  align-items:baseline;
+  gap:.8rem;
+  margin-bottom:.4rem;
+}
+.precio{
+  font-family:var(--font-head);
+  font-size:2.3rem;
+  font-weight:800;
+  color:var(--azul-800);
+  line-height:1;
+}
+.precio-nota{font-size:.82rem;color:var(--gris-500);}
+.envio-nota{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.86rem;color:var(--verde-700);font-weight:600;
+  margin-bottom:1.8rem;
+}
+
+.contenido-kit{
+  background:var(--gris-50);
+  border:1px solid var(--gris-200);
+  border-radius:var(--radius);
+  padding:1.5rem 1.6rem;
+  margin-bottom:1.8rem;
+}
+.contenido-kit h4{
+  font-size:.95rem;
+  margin-bottom:1rem;
+}
+.contenido-kit ul{display:flex;flex-direction:column;gap:.85rem;}
+.contenido-kit li{display:flex;gap:.9rem;align-items:flex-start;font-size:.9rem;}
+.contenido-kit li i{
+  width:34px;height:34px;flex-shrink:0;
+  border-radius:10px;
+  background:#fff;
+  border:1px solid var(--gris-200);
+  display:grid;place-items:center;
+  color:var(--verde-600);
+  font-size:.9rem;
+}
+.contenido-kit li strong{display:block;color:var(--azul-800);font-size:.9rem;line-height:1.3;}
+.contenido-kit li span{color:var(--gris-500);font-size:.84rem;line-height:1.45;display:block;}
+
+.compra-row{
+  display:flex;
+  gap:1rem;
+  align-items:stretch;
+  flex-wrap:wrap;
+  margin-bottom:1.2rem;
+}
+.qty{
+  display:inline-flex;
+  align-items:center;
+  border:1.5px solid var(--gris-200);
+  border-radius:100px;
+  background:#fff;
+  overflow:hidden;
+}
+.qty button{
+  width:44px;height:100%;
+  min-height:48px;
+  background:none;border:none;
+  font-size:1.1rem;
+  color:var(--azul-800);
+  cursor:pointer;
+  transition:var(--transition);
+}
+.qty button:hover{background:var(--verde-100);color:var(--verde-700);}
+.qty span{min-width:34px;text-align:center;font-weight:700;color:var(--azul-800);}
+.compra-row .btn{flex:1;min-width:170px;}
+
+.garantias{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.8rem;
+  margin-top:1.6rem;
+}
+.garantia{
+  text-align:center;
+  font-size:.78rem;
+  color:var(--gris-500);
+  font-weight:500;
+  line-height:1.35;
+}
+.garantia i{
+  display:block;
+  font-size:1.2rem;
+  color:var(--verde-500);
+  margin-bottom:.4rem;
+}
+
+.beneficios{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:1.4rem;
+  margin-top:4.5rem;
+}
+.beneficio{
+  background:#fff;
+  border:1px solid var(--gris-200);
+  border-radius:var(--radius);
+  padding:1.6rem 1.5rem;
+  text-align:left;
+  transition:var(--transition);
+}
+.beneficio:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--verde-100);}
+.beneficio i{
+  width:46px;height:46px;
+  display:grid;place-items:center;
+  border-radius:13px;
+  background:var(--verde-100);
+  color:var(--verde-700);
+  margin-bottom:1rem;
+}
+.beneficio h4{font-size:1rem;margin-bottom:.4rem;}
+.beneficio p{font-size:.88rem;color:var(--gris-500);line-height:1.6;}
+
+.como-usar{
+  margin-top:4rem;
+  background:#fff;
+  border:1px solid var(--gris-200);
+  border-radius:var(--radius-lg);
+  padding:2.6rem 2.4rem;
+  box-shadow:var(--shadow-sm);
+}
+.como-usar h3{text-align:center;font-size:1.45rem;margin-bottom:2rem;}
+.pasos{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:1.6rem;
+  counter-reset:paso;
+}
+.paso{text-align:center;position:relative;}
+.paso::before{
+  counter-increment:paso;
+  content:counter(paso);
+  display:grid;place-items:center;
+  width:42px;height:42px;
+  margin:0 auto 1rem;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--verde-500),var(--verde-700));
+  color:#fff;
+  font-family:var(--font-head);
+  font-weight:700;
+}
+.paso h4{font-size:.98rem;margin-bottom:.35rem;}
+.paso p{font-size:.86rem;color:var(--gris-500);}
+
+/* Carrito (drawer) */
+.overlay{
+  position:fixed;inset:0;
+  background:rgba(6,23,41,.55);
+  backdrop-filter:blur(3px);
+  z-index:1900;
+  opacity:0;visibility:hidden;
+  transition:opacity .3s ease, visibility .3s;
+}
+.overlay.show{opacity:1;visibility:visible;}
+
+.drawer{
+  position:fixed;
+  top:0;right:0;bottom:0;
+  width:min(100%, 420px);
+  background:#fff;
+  z-index:2000;
+  display:flex;
+  flex-direction:column;
+  transform:translateX(105%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  box-shadow:-20px 0 50px rgba(11,37,69,.2);
+}
+.drawer.open{transform:none;}
+.drawer-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.3rem 1.5rem;
+  border-bottom:1px solid var(--gris-200);
+}
+.drawer-head h3{font-size:1.15rem;}
+.icon-close{
+  width:38px;height:38px;border-radius:10px;
+  background:var(--gris-100);border:none;cursor:pointer;
+  color:var(--azul-800);transition:var(--transition);
+}
+.icon-close:hover{background:var(--verde-100);color:var(--verde-700);}
+.drawer-body{flex:1;overflow-y:auto;padding:1.4rem 1.5rem;}
+.drawer-foot{
+  border-top:1px solid var(--gris-200);
+  padding:1.3rem 1.5rem 1.6rem;
+  background:var(--gris-50);
+}
+
+.cart-empty{
+  text-align:center;
+  padding:3rem 1rem;
+  color:var(--gris-500);
+}
+.cart-empty i{font-size:2.6rem;color:var(--gris-400);margin-bottom:1rem;}
+.cart-empty p{margin-bottom:1.4rem;font-size:.95rem;}
+
+.cart-item{
+  display:flex;gap:1rem;align-items:center;
+}
+.cart-thumb{
+  width:76px;height:76px;flex-shrink:0;
+  border-radius:var(--radius-sm);
+  background:linear-gradient(145deg,#ECFDF5,#E4EDF6);
+  display:grid;place-items:center;
+  color:var(--verde-700);
+  font-size:1.5rem;
+  overflow:hidden;position:relative;
+}
+.cart-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.cart-meta{flex:1;}
+.cart-meta strong{display:block;color:var(--azul-800);font-size:.95rem;line-height:1.3;}
+.cart-meta small{color:var(--gris-500);font-size:.8rem;}
+.cart-meta .qty{margin-top:.5rem;}
+.cart-meta .qty button{min-height:34px;width:34px;font-size:.95rem;}
+.cart-meta .qty span{min-width:28px;font-size:.88rem;}
+.cart-price{font-weight:700;color:var(--azul-800);font-size:.95rem;text-align:right;}
+.cart-remove{
+  display:block;margin-top:.5rem;
+  background:none;border:none;
+  color:var(--gris-400);font-size:.78rem;cursor:pointer;
+}
+.cart-remove:hover{color:#DC2626;}
+
+.totales{margin-bottom:1.2rem;}
+.totales div{
+  display:flex;justify-content:space-between;
+  font-size:.92rem;margin-bottom:.45rem;color:var(--gris-700);
+}
+.totales .total-final{
+  font-size:1.1rem;font-weight:700;color:var(--azul-800);
+  border-top:1px dashed var(--gris-200);
+  padding-top:.8rem;margin-top:.6rem;
+}
+
+/* Modal checkout */
+.modal{
+  position:fixed;inset:0;
+  z-index:2100;
+  display:grid;place-items:center;
+  padding:1rem;
+  opacity:0;visibility:hidden;
+  transition:opacity .3s ease, visibility .3s;
+}
+.modal.show{opacity:1;visibility:visible;}
+.modal-card{
+  background:#fff;
+  width:min(100%, 920px);
+  max-height:94vh;
+  overflow-y:auto;
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);
+  transform:translateY(20px) scale(.98);
+  transition:transform .35s ease;
+}
+.modal.show .modal-card{transform:none;}
+.modal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 1.8rem;
+  border-bottom:1px solid var(--gris-200);
+  position:sticky;top:0;background:#fff;z-index:2;
+}
+.modal-head h3{font-size:1.25rem;}
+.checkout-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:2rem;
+  padding:1.8rem;
+}
+.checkout-grid h4{font-size:.95rem;margin-bottom:1rem;}
+
+.opciones{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.4rem;}
+.opcion{
+  display:flex;align-items:center;gap:.9rem;
+  border:1.5px solid var(--gris-200);
+  border-radius:var(--radius-sm);
+  padding:.8rem 1rem;
+  cursor:pointer;
+  transition:var(--transition);
+  font-size:.9rem;
+}
+.opcion:hover{border-color:var(--verde-300);}
+.opcion input{accent-color:var(--verde-600);width:17px;height:17px;}
+.opcion:has(input:checked){border-color:var(--verde-500);background:#F0FDF9;}
+.opcion strong{display:block;color:var(--azul-800);font-size:.9rem;}
+.opcion small{color:var(--gris-500);font-size:.78rem;}
+.opcion .op-precio{margin-left:auto;font-weight:600;color:var(--azul-800);font-size:.88rem;}
+
+.resumen{
+  background:var(--gris-50);
+  border:1px solid var(--gris-200);
+  border-radius:var(--radius);
+  padding:1.5rem;
+  align-self:start;
+}
+.resumen-item{display:flex;gap:.9rem;align-items:center;margin-bottom:1.2rem;}
+.resumen-item .cart-thumb{width:60px;height:60px;font-size:1.2rem;}
+.resumen-item strong{font-size:.9rem;color:var(--azul-800);display:block;line-height:1.3;}
+.resumen-item small{color:var(--gris-500);font-size:.8rem;}
+
+.form-error{
+  display:none;
+  color:#B91C1C;font-size:.82rem;font-weight:600;margin-bottom:1rem;
+}
+.form-error.show{display:block;}
+
+.confirmacion{
+  text-align:center;
+  padding:3.2rem 2rem 3rem;
+  display:none;
+}
+.confirmacion.show{display:block;animation:fadeUp .5s ease;}
+.confirmacion .check{
+  width:84px;height:84px;margin:0 auto 1.5rem;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--verde-400),var(--verde-700));
+  color:#fff;font-size:2.2rem;
+  display:grid;place-items:center;
+  box-shadow:var(--shadow-verde);
+}
+.confirmacion h3{font-size:1.6rem;margin-bottom:.7rem;}
+.confirmacion p{color:var(--gris-500);max-width:480px;margin:0 auto 1.4rem;}
+.pedido-num{
+  display:inline-block;
+  background:var(--gris-100);
+  border-radius:100px;
+  padding:.5rem 1.3rem;
+  font-weight:700;color:var(--azul-800);
+  letter-spacing:.06em;font-size:.9rem;
+  margin-bottom:1.6rem;
+}
+.confirmacion .demo-banner{text-align:left;margin-bottom:1.8rem;}
+
 .unete{
   position:relative;
   background:linear-gradient(160deg,var(--azul-900) 0%,var(--azul-800) 50%,#0A2E52 100%);
@@ -1041,6 +1681,12 @@ select.form-control{
   color:rgba(255,255,255,.45);
 }
 
+@media (max-width:1100px){
+  .nav-links{gap:1.2rem;}
+  .nav-links a:not(.nav-cta){font-size:.88rem;}
+  .nav-cta{padding:.65rem 1.1rem;}
+}
+
 @media (max-width:1024px){
   .hero-inner{grid-template-columns:1fr;gap:3rem;}
   .hero-visual{order:-1;}
@@ -1051,6 +1697,9 @@ select.form-control{
   .fondo-stats{flex-direction:row;flex-wrap:wrap;}
   .stat-box{flex:1;min-width:130px;}
   .contacto-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .producto{grid-template-columns:1fr;gap:2.5rem;}
+  .galeria{max-width:560px;margin-inline:auto;width:100%;}
+  .proyeccion-box{grid-template-columns:1fr;gap:2rem;}
 }
 
 @media (max-width:900px){
@@ -1095,6 +1744,8 @@ select.form-control{
 
   .section{padding:72px 0;}
   .footer-grid{grid-template-columns:1fr 1fr;gap:2.2rem;}
+  .checkout-grid{grid-template-columns:1fr;}
+  .resumen{order:-1;}
 }
 
 @media (max-width:640px){
@@ -1123,6 +1774,17 @@ select.form-control{
 
   .footer-grid{grid-template-columns:1fr;gap:2rem;}
   .footer-bottom{justify-content:center;text-align:center;}
+
+  .empresa-mv{margin-bottom:3.5rem;}
+  .como-usar{padding:2rem 1.4rem;}
+  .garantias{grid-template-columns:1fr;gap:.6rem;}
+  .garantia{display:flex;align-items:center;gap:.7rem;text-align:left;}
+  .garantia i{display:inline;margin:0;}
+  .checkout-grid{padding:1.2rem;}
+  .modal-head{padding:1.1rem 1.2rem;}
+  .confirmacion{padding:2.4rem 1.2rem;}
+  .proyeccion-box{padding:2rem 1.5rem;}
+  .proyeccion-stats{grid-template-columns:1fr;}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -1175,16 +1837,24 @@ select.form-control{
     <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
       <a href="#servicios">Servicios</a>
       <a href="#nosotros">Nosotros</a>
+      <a href="#empresa">Nuestra Empresa</a>
+      <a href="#ecodesk">EcoDesk</a>
       <a href="#unete">Únete</a>
       <a href="#contacto">Contacto</a>
       <a href="#contacto" class="nav-cta">Solicitar Servicio</a>
     </nav>
 
-    <button class="hamburger" id="hamburger" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="navLinks">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito de compras">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -1392,6 +2062,305 @@ select.form-control{
     </div>
   </section>
 
+  <!-- =====================================================
+       NUESTRA EMPRESA · EcoDesk
+       ===================================================== -->
+  <section class="section section--gris" id="empresa">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><i class="fa-solid fa-leaf"></i> Nuestra Empresa</span>
+        <h2>EcoDesk: la línea de productos que <span class="grad-text">fortalece nuestra cooperativa</span></h2>
+        <p>
+          Además de servicios tecnológicos, IntegraCode Coop desarrolla productos
+          físicos sostenibles. EcoDesk nace para cuidar tus equipos, el medio ambiente
+          y el fondo solidario de nuestros socios.
+        </p>
+      </div>
+
+      <div class="empresa-intro reveal">
+        <div class="empresa-marca">
+          <span class="eco-mark"><i class="fa-solid fa-leaf"></i></span>
+          <div>
+            <strong>EcoDesk</strong>
+            <span>Una marca de IntegraCode Coop</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="empresa-mv">
+        <article class="pilar-card reveal">
+          <div class="pilar-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <h3>Misión</h3>
+          <p>
+            Ofrecer soluciones de limpieza y mantenimiento ecológicas, prácticas y
+            accesibles para equipos tecnológicos y espacios de trabajo, fomentando
+            el consumo responsable y fortaleciendo el modelo de economía solidaria
+            de IntegraCode Coop mediante la comercialización de productos físicos
+            de calidad.
+          </p>
+        </article>
+
+        <article class="pilar-card reveal">
+          <div class="pilar-icon"><i class="fa-solid fa-eye"></i></div>
+          <h3>Visión</h3>
+          <p>
+            Para 2028, ser la marca de referencia en Bogotá en kits y accesorios de
+            mantenimiento ecoamigables para oficinas, instituciones educativas y
+            entornos tecnológicos, reconocida por su innovación local, su compromiso
+            con la economía circular y su impacto social cooperativo.
+          </p>
+        </article>
+      </div>
+
+      <div class="porque-head reveal">
+        <h3>¿Por qué crear una empresa alterna a la cooperativa?</h3>
+        <p>
+          EcoDesk responde a tres necesidades estratégicas que complementan el
+          trabajo de IntegraCode Coop y protegen su sostenibilidad en el tiempo.
+        </p>
+      </div>
+
+      <div class="porque-grid">
+        <article class="porque-card reveal">
+          <div class="porque-num">01</div>
+          <h4>Diversificación y estabilidad financiera</h4>
+          <p>
+            Los servicios de la cooperativa dependen del tiempo y el talento de sus
+            socios, y los contratos pueden variar de un mes a otro. La venta de
+            productos físicos aporta un flujo de caja recurrente y predecible, que
+            reduce la dependencia de los proyectos por encargo.
+          </p>
+        </article>
+
+        <article class="porque-card reveal">
+          <div class="porque-num">02</div>
+          <h4>Sostenibilidad del fondo solidario</h4>
+          <p>
+            Las utilidades de EcoDesk se integran al modelo de retención solidaria y
+            alimentan el fondo común, que subsidia el Fondo Futuro IT. Así se
+            respaldan los rendimientos de los socios ahorradores sin depender
+            únicamente de los proyectos de software.
+          </p>
+        </article>
+
+        <article class="porque-card reveal">
+          <div class="porque-num">03</div>
+          <h4>Posicionamiento de marca</h4>
+          <p>
+            Un producto útil, con el sello de la cooperativa, presente en los
+            escritorios de pymes, universidades y estudiantes, aumenta el
+            reconocimiento de IntegraCode y abre la puerta a que más clientes
+            conozcan nuestros servicios de tecnología.
+          </p>
+        </article>
+      </div>
+
+      <!-- Proyección y Costos -->
+      <div class="proyeccion-box reveal">
+        <div class="proyeccion-content">
+          <h3>Proyección y viabilidad de EcoDesk</h3>
+          <p>
+            Con una inversión inicial de <strong>$1.727.000</strong> (de los cuales $1.130.000 son recuperables en inventario), el modelo de negocio está diseñado para ser rentable desde el primer año. El costo de producción por kit es de <strong>$11.305</strong> y se comercializa a un precio público de <strong>$24.900</strong>, dejando un margen del 41.2% por unidad.
+          </p>
+          <p>
+            Con un punto de equilibrio de <strong>21 kits al mes</strong> (o 35 si se incluye el 15% de aporte al fondo), la inversión no recuperable se amortiza en el <strong>Mes 7</strong> en un escenario base.
+          </p>
+        </div>
+        <div class="proyeccion-stats">
+          <div class="p-stat">
+            <strong>$24.900</strong>
+            <span>Precio al público</span>
+          </div>
+          <div class="p-stat">
+            <strong>$8.624</strong>
+            <span>Ganancia por kit</span>
+          </div>
+          <div class="p-stat">
+            <strong>Mes 7</strong>
+            <span>Recuperación inversión</span>
+          </div>
+          <div class="p-stat">
+            <strong>$24.1M</strong>
+            <span>Utilidad a 3 años</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PRODUCTO · Kit EcoDesk
+       ===================================================== -->
+  <section class="section" id="ecodesk">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow"><i class="fa-solid fa-store"></i> Tienda EcoDesk</span>
+        <h2>Cuida tus equipos y el planeta con un <span class="grad-text">solo kit</span></h2>
+        <p>
+          Todo lo que necesitas para mantener limpios tu pantalla, teclado y
+          escritorio, con una fórmula biodegradable y accesorios reutilizables.
+        </p>
+      </div>
+
+      <div class="demo-banner reveal" role="note">
+        <i class="fa-solid fa-circle-info"></i>
+        <span><strong>Tienda de demostración.</strong> Este proceso de compra es una simulación con fines académicos: no se realiza ningún cobro ni se envía ningún pedido real.</span>
+      </div>
+
+      <div class="producto">
+        <!-- Galería -->
+        <div class="galeria reveal">
+          <div class="galeria-main" id="galeriaMain">
+            <span class="tag-eco"><i class="fa-solid fa-leaf"></i> Fórmula biodegradable</span>
+            <!-- IMAGEN PRINCIPAL (Kit completo) -->
+            <img id="galeriaImg" src="img/ecodesk-kit-1.jpg" alt="Kit de limpieza EcoDesk completo con estuche, atomizador, brocha y paño">
+          </div>
+
+          <div class="galeria-thumbs" id="galeriaThumbs">
+            <button class="thumb active" type="button" data-src="img/ecodesk-kit-1.jpg" aria-label="Ver kit completo">
+              <img src="img/ecodesk-kit-1.jpg" alt="Miniatura kit completo">
+            </button>
+            <button class="thumb" type="button" data-src="img/ecodesk-kit-2.jpg" aria-label="Ver atomizador">
+              <img src="img/ecodesk-kit-2.jpg" alt="Miniatura atomizador">
+            </button>
+            <button class="thumb" type="button" data-src="img/ecodesk-kit-3.jpg" aria-label="Ver brocha">
+              <img src="img/ecodesk-kit-3.jpg" alt="Miniatura brocha kabuki">
+            </button>
+            <button class="thumb" type="button" data-src="img/ecodesk-kit-4.jpg" aria-label="Ver paño">
+              <img src="img/ecodesk-kit-4.jpg" alt="Miniatura paño de microfibra">
+            </button>
+          </div>
+        </div>
+
+        <!-- Información -->
+        <div class="producto-info reveal">
+          <p class="marca-linea">EcoDesk · IntegraCode Coop</p>
+          <h3>Kit de Limpieza Biodegradable para Equipos</h3>
+          <p class="desc">
+            Un set compacto y listo para usar que elimina polvo, huellas y suciedad de
+            pantallas, teclados y superficies de trabajo, sin químicos agresivos y con
+            accesorios que duran.
+          </p>
+
+          <div class="precio-box">
+            <span class="precio" id="precioUnit">$24.900</span>
+            <span class="precio-nota">COP · IVA incluido</span>
+          </div>
+          <p class="envio-nota"><i class="fa-solid fa-truck-fast"></i> Entrega gratuita dentro del campus</p>
+
+          <div class="contenido-kit">
+            <h4>¿Qué incluye el kit?</h4>
+            <ul>
+              <li>
+                <i class="fa-solid fa-spray-can-sparkles"></i>
+                <div>
+                  <strong>Atomizador de 100 ml (o 200 ml)</strong>
+                  <span>Solución biodegradable, recargable y de aplicación uniforme.</span>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-brush"></i>
+                <div>
+                  <strong>Brocha tipo kabuki</strong>
+                  <span>Retira el polvo de teclados, puertos y ventilaciones.</span>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <div>
+                  <strong>Mini cepillo de precisión</strong>
+                  <span>Llega a los espacios estrechos entre teclas y bordes.</span>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-droplet"></i>
+                <div>
+                  <strong>Paño de microfibra</strong>
+                  <span>Reutilizable y lavable, no deja pelusas ni marcas.</span>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-box"></i>
+                <div>
+                  <strong>Caja deslizable de cartón</strong>
+                  <span>Presentación compacta para guardar y transportar el kit.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="compra-row">
+            <div class="qty" aria-label="Cantidad">
+              <button type="button" id="qtyMenos" aria-label="Disminuir cantidad"><i class="fa-solid fa-minus"></i></button>
+              <span id="qtyValor">1</span>
+              <button type="button" id="qtyMas" aria-label="Aumentar cantidad"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <button type="button" class="btn btn-primary" id="btnAgregar">
+              <i class="fa-solid fa-bag-shopping"></i> Agregar al carrito
+            </button>
+          </div>
+          <button type="button" class="btn btn-ghost btn-block" id="btnComprarAhora">
+            Comprar ahora
+          </button>
+
+          <div class="garantias">
+            <div class="garantia"><i class="fa-solid fa-leaf"></i> Fórmula biodegradable</div>
+            <div class="garantia"><i class="fa-solid fa-recycle"></i> Accesorios reutilizables</div>
+            <div class="garantia"><i class="fa-solid fa-people-group"></i> Apoya a estudiantes</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beneficios -->
+      <div class="beneficios">
+        <article class="beneficio reveal">
+          <i class="fa-solid fa-seedling"></i>
+          <h4>Pensado para el planeta</h4>
+          <p>Una fórmula biodegradable y un empaque de cartón reducen el impacto frente a los limpiadores tradicionales.</p>
+        </article>
+        <article class="beneficio reveal">
+          <i class="fa-solid fa-laptop"></i>
+          <h4>Cuidado profesional</h4>
+          <p>Herramientas suaves, adecuadas para pantallas y teclados, que ayudan a prolongar la vida útil de tus equipos.</p>
+        </article>
+        <article class="beneficio reveal">
+          <i class="fa-solid fa-hands-holding-circle"></i>
+          <h4>Compra con propósito</h4>
+          <p>Cada kit fortalece el fondo solidario de la cooperativa y el ahorro de nuestros socios estudiantes.</p>
+        </article>
+        <article class="beneficio reveal">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          <h4>Hecho para durar</h4>
+          <p>El atomizador es recargable y el paño y las brochas se lavan y se reutilizan una y otra vez.</p>
+        </article>
+      </div>
+
+      <!-- Cómo usar -->
+      <div class="como-usar reveal">
+        <h3>Cómo usar tu kit EcoDesk</h3>
+        <div class="pasos">
+          <div class="paso">
+            <h4>Apaga y desconecta</h4>
+            <p>Apaga el equipo y desconéctalo de la corriente antes de limpiar.</p>
+          </div>
+          <div class="paso">
+            <h4>Retira el polvo</h4>
+            <p>Usa la brocha y el cepillo de precisión en teclas, puertos y bordes.</p>
+          </div>
+          <div class="paso">
+            <h4>Humedece el paño</h4>
+            <p>Rocía la solución sobre el paño, nunca directamente sobre el equipo.</p>
+          </div>
+          <div class="paso">
+            <h4>Limpia y reutiliza</h4>
+            <p>Pasa el paño con suavidad y lávalo para el siguiente uso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section unete" id="unete">
     <div class="container">
       <div class="section-head reveal">
@@ -1532,6 +2501,7 @@ select.form-control{
                 <option value="" selected disabled>Selecciona una opción</option>
                 <option value="hardware">Soporte de Hardware y Redes</option>
                 <option value="software">Desarrollo de Software</option>
+                <option value="ecodesk">Productos EcoDesk</option>
                 <option value="socio">Quiero unirme como socio</option>
                 <option value="fondo">Información del Fondo Futuro IT</option>
                 <option value="alianza">Alianza institucional</option>
@@ -1612,6 +2582,8 @@ select.form-control{
           <li><a href="#inicio"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Inicio</a></li>
           <li><a href="#servicios"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Servicios</a></li>
           <li><a href="#nosotros"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Nosotros</a></li>
+          <li><a href="#empresa"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Nuestra Empresa</a></li>
+          <li><a href="#ecodesk"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Tienda EcoDesk</a></li>
           <li><a href="#unete"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Únete</a></li>
           <li><a href="#contacto"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Contacto</a></li>
         </ul>
@@ -1622,6 +2594,7 @@ select.form-control{
         <ul>
           <li><a href="#servicios"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Hardware y Redes</a></li>
           <li><a href="#servicios"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Desarrollo de Software</a></li>
+          <li><a href="#ecodesk"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Kit EcoDesk</a></li>
           <li><a href="#unete"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Fondo Futuro IT</a></li>
           <li><a href="#unete"><i class="fa-solid fa-chevron-right" style="font-size:.65rem"></i> Modelo de aportes</a></li>
         </ul>
@@ -1635,6 +2608,140 @@ select.form-control{
   </div>
 </footer>
 
+<!-- =====================================================
+     CARRITO (drawer)
+     ===================================================== -->
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="drawer" aria-label="Carrito de compras" aria-hidden="true">
+  <div class="drawer-head">
+    <h3>Tu carrito</h3>
+    <button class="icon-close" id="drawerClose" aria-label="Cerrar carrito"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot" id="drawerFoot">
+    <div class="totales">
+      <div><span>Subtotal</span><span id="cartSubtotal">$0</span></div>
+      <div><span>Envío</span><span>Se define en el pago</span></div>
+    </div>
+    <button type="button" class="btn btn-primary btn-block" id="btnCheckout">
+      Finalizar compra <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+</aside>
+
+<!-- =====================================================
+     CHECKOUT (modal)
+     ===================================================== -->
+<div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitulo" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="checkoutTitulo">Finalizar compra</h3>
+      <button class="icon-close" id="modalClose" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Paso: formulario -->
+    <div id="checkoutForm">
+      <form id="orderForm" novalidate>
+        <div class="checkout-grid">
+          <div>
+            <h4>Datos del comprador</h4>
+            <div class="form-group">
+              <label for="cNombre">Nombre completo <span>*</span></label>
+              <input type="text" id="cNombre" class="form-control" placeholder="Ej: Ana María Rodríguez" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cEmail">Correo electrónico <span>*</span></label>
+                <input type="email" id="cEmail" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+              </div>
+              <div class="form-group">
+                <label for="cTel">Celular <span>*</span></label>
+                <input type="tel" id="cTel" class="form-control" placeholder="300 000 0000" required>
+              </div>
+            </div>
+
+            <h4>Método de entrega</h4>
+            <div class="opciones">
+              <label class="opcion">
+                <input type="radio" name="entrega" value="campus" checked>
+                <div><strong>Entrega en el campus</strong><small>Punto de entrega de la cooperativa</small></div>
+                <span class="op-precio">Gratis</span>
+              </label>
+              <label class="opcion">
+                <input type="radio" name="entrega" value="domicilio">
+                <div><strong>Domicilio en Bogotá</strong><small>Entrega en tu dirección</small></div>
+                <span class="op-precio">$8.000</span>
+              </label>
+            </div>
+
+            <div class="form-group" id="grupoDireccion" style="display:none">
+              <label for="cDir">Dirección de entrega <span>*</span></label>
+              <input type="text" id="cDir" class="form-control" placeholder="Calle 00 # 00 - 00, barrio">
+            </div>
+
+            <h4>Método de pago</h4>
+            <div class="opciones">
+              <label class="opcion">
+                <input type="radio" name="pago" value="Transferencia / PSE" checked>
+                <div><strong>Transferencia o PSE</strong><small>Pago desde tu cuenta bancaria</small></div>
+                <i class="fa-solid fa-building-columns op-precio"></i>
+              </label>
+              <label class="opcion">
+                <input type="radio" name="pago" value="Pago contra entrega">
+                <div><strong>Pago contra entrega</strong><small>Pagas al recibir tu pedido</small></div>
+                <i class="fa-solid fa-hand-holding-dollar op-precio"></i>
+              </label>
+            </div>
+
+            <p class="form-error" id="orderError">Por favor completa todos los campos obligatorios con datos válidos.</p>
+          </div>
+
+          <aside class="resumen">
+            <h4>Resumen del pedido</h4>
+            <div class="resumen-item">
+              <div class="cart-thumb">
+                <img src="img/ecodesk-kit-1.jpg" alt="Miniatura EcoDesk">
+              </div>
+              <div>
+                <strong>Kit de Limpieza Biodegradable EcoDesk</strong>
+                <small id="resCant">Cantidad: 1</small>
+              </div>
+            </div>
+            <div class="totales">
+              <div><span>Subtotal</span><span id="resSubtotal">$0</span></div>
+              <div><span>Envío</span><span id="resEnvio">Gratis</span></div>
+              <div class="total-final"><span>Total</span><span id="resTotal">$0</span></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="fa-solid fa-lock"></i> Confirmar pedido
+            </button>
+            <p style="font-size:.74rem;color:var(--gris-500);margin-top:.9rem;text-align:center;line-height:1.5">
+              Simulación académica: no se solicitan datos de tarjeta ni se realiza ningún cobro.
+            </p>
+          </aside>
+        </div>
+      </form>
+    </div>
+
+    <!-- Paso: confirmación -->
+    <div class="confirmacion" id="checkoutOk">
+      <div class="check"><i class="fa-solid fa-check"></i></div>
+      <h3>¡Gracias por tu compra, <span id="okNombre"></span>!</h3>
+      <p>Hemos registrado tu pedido de demostración. En una tienda real recibirías un correo de confirmación en <strong id="okEmail"></strong>.</p>
+      <div class="pedido-num" id="okPedido"></div>
+      <div class="demo-banner" role="note">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Recuerda que esta es una <strong>tienda de demostración</strong> creada con fines académicos. No se ha realizado ningún cobro ni se enviará ningún producto.</span>
+      </div>
+      <button type="button" class="btn btn-azul" id="okCerrar">Volver a la tienda</button>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     SCRIPT PRINCIPAL
+     ========================================================= -->
 <script>
 (function () {
   'use strict';
@@ -1648,7 +2755,6 @@ select.form-control{
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
     hamburger.setAttribute('aria-label', 'Abrir menú de navegación');
-    document.body.style.overflow = '';
   }
 
   function openMenu() {
@@ -1659,45 +2765,26 @@ select.form-control{
   }
 
   hamburger.addEventListener('click', function () {
-    if (navLinks.classList.contains('active')) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+    navLinks.classList.contains('active') ? closeMenu() : openMenu();
   });
 
-  // Cerrar el menú al hacer clic en cualquier enlace
   navLinks.querySelectorAll('a').forEach(function (link) {
     link.addEventListener('click', closeMenu);
   });
 
-  // Cerrar el menú al hacer clic fuera de él
   document.addEventListener('click', function (e) {
     if (!navLinks.classList.contains('active')) return;
-    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-      closeMenu();
-    }
+    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
   });
 
-  // Cerrar el menú con la tecla Escape
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeMenu();
-  });
-
-  // Resetear el menú al pasar a escritorio
   window.addEventListener('resize', function () {
     if (window.innerWidth > 900) closeMenu();
   });
 
   /* ---------- 2. Sombra del navbar al hacer scroll ---------- */
   const navbar = document.getElementById('navbar');
-
   function handleNavbarShadow() {
-    if (window.scrollY > 12) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    navbar.classList.toggle('scrolled', window.scrollY > 12);
   }
   handleNavbarShadow();
   window.addEventListener('scroll', handleNavbarShadow, { passive: true });
@@ -1709,21 +2796,13 @@ select.form-control{
     const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry, index) {
         if (entry.isIntersecting) {
-          // Pequeño retardo escalonado para un efecto más orgánico
-          setTimeout(function () {
-            entry.target.classList.add('visible');
-          }, index * 80);
+          setTimeout(function () { entry.target.classList.add('visible'); }, index * 80);
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -60px 0px'
-    });
-
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     revealElements.forEach(function (el) { observer.observe(el); });
   } else {
-    // Fallback para navegadores antiguos
     revealElements.forEach(function (el) { el.classList.add('visible'); });
   }
 
@@ -1733,24 +2812,235 @@ select.form-control{
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-
-    // Validación nativa básica
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    // Simulación de envío exitoso sin recargar la página
+    if (!form.checkValidity()) { form.reportValidity(); return; }
     successBox.classList.add('show');
     form.reset();
-
-    // Desplazamiento suave hacia el mensaje de confirmación
     successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    window.setTimeout(function () { successBox.classList.remove('show'); }, 7000);
+  });
 
-    // Ocultar el mensaje después de 7 segundos
-    window.setTimeout(function () {
-      successBox.classList.remove('show');
-    }, 7000);
+  /* =========================================================
+     5. TIENDA ECODESK (demostración)
+     ========================================================= */
+  const PRECIO = 24900; 
+  const ENVIO_DOMICILIO = 8000;
+  const MAX_UNIDADES = 10;
+
+  const fmt = function (n) {
+    return '$' + n.toLocaleString('es-CO');
+  };
+
+  const $ = function (id) { return document.getElementById(id); };
+
+  let cantidadSel = 1;
+  let carrito = 0;
+
+  const cartBtn = $('cartBtn'), cartCount = $('cartCount');
+  const drawer = $('drawer'), overlay = $('overlay');
+  const drawerBody = $('drawerBody'), drawerFoot = $('drawerFoot');
+  const modal = $('checkoutModal');
+
+  $('precioUnit').textContent = fmt(PRECIO);
+
+  /* Galería */
+  const galeriaImg = $('galeriaImg');
+  document.querySelectorAll('#galeriaThumbs .thumb').forEach(function (t) {
+    t.addEventListener('click', function () {
+      document.querySelectorAll('#galeriaThumbs .thumb').forEach(function (x) { x.classList.remove('active'); });
+      t.classList.add('active');
+      galeriaImg.src = t.dataset.src;
+    });
+  });
+
+  /* Selector de cantidad en la ficha */
+  $('qtyMenos').addEventListener('click', function () {
+    cantidadSel = Math.max(1, cantidadSel - 1);
+    $('qtyValor').textContent = cantidadSel;
+  });
+  $('qtyMas').addEventListener('click', function () {
+    cantidadSel = Math.min(MAX_UNIDADES, cantidadSel + 1);
+    $('qtyValor').textContent = cantidadSel;
+  });
+
+  /* Drawer */
+  function lockScroll(on) { document.body.classList.toggle('no-scroll', on); }
+
+  function openDrawer() {
+    renderCarrito();
+    drawer.classList.add('open');
+    overlay.classList.add('show');
+    drawer.setAttribute('aria-hidden', 'false');
+    lockScroll(true);
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    if (!modal.classList.contains('show')) overlay.classList.remove('show');
+    drawer.setAttribute('aria-hidden', 'true');
+    if (!modal.classList.contains('show')) lockScroll(false);
+  }
+
+  function actualizarContador() {
+    cartCount.textContent = carrito;
+    cartCount.classList.toggle('show', carrito > 0);
+    cartBtn.classList.remove('bump');
+    void cartBtn.offsetWidth;
+    if (carrito > 0) cartBtn.classList.add('bump');
+  }
+
+  function renderCarrito() {
+    if (carrito === 0) {
+      drawerBody.innerHTML =
+        '<div class="cart-empty"><i class="fa-solid fa-bag-shopping"></i>' +
+        '<p>Tu carrito está vacío.</p>' +
+        '<a href="#ecodesk" class="btn btn-primary" id="irTienda">Ver el kit EcoDesk</a></div>';
+      drawerFoot.style.display = 'none';
+      const ir = $('irTienda');
+      if (ir) ir.addEventListener('click', closeDrawer);
+      return;
+    }
+    drawerFoot.style.display = '';
+    drawerBody.innerHTML =
+      '<div class="cart-item">' +
+        '<div class="cart-thumb">' +
+          '<img src="img/ecodesk-kit-1.jpg" alt="Kit EcoDesk"></div>' +
+        '<div class="cart-meta">' +
+          '<strong>Kit de Limpieza Biodegradable EcoDesk</strong>' +
+          '<small>' + fmt(PRECIO) + ' c/u</small>' +
+          '<div class="qty">' +
+            '<button type="button" id="cMenos" aria-label="Disminuir"><i class="fa-solid fa-minus"></i></button>' +
+            '<span>' + carrito + '</span>' +
+            '<button type="button" id="cMas" aria-label="Aumentar"><i class="fa-solid fa-plus"></i></button>' +
+          '</div>' +
+        '</div>' +
+        '<div><div class="cart-price">' + fmt(PRECIO * carrito) + '</div>' +
+        '<button type="button" class="cart-remove" id="cQuitar">Quitar</button></div>' +
+      '</div>';
+    $('cartSubtotal').textContent = fmt(PRECIO * carrito);
+
+    $('cMenos').addEventListener('click', function () {
+      carrito = Math.max(0, carrito - 1);
+      actualizarContador(); renderCarrito();
+    });
+    $('cMas').addEventListener('click', function () {
+      carrito = Math.min(MAX_UNIDADES, carrito + 1);
+      actualizarContador(); renderCarrito();
+    });
+    $('cQuitar').addEventListener('click', function () {
+      carrito = 0;
+      actualizarContador(); renderCarrito();
+    });
+  }
+
+  $('btnAgregar').addEventListener('click', function () {
+    carrito = Math.min(MAX_UNIDADES, carrito + cantidadSel);
+    actualizarContador();
+    openDrawer();
+  });
+
+  $('btnComprarAhora').addEventListener('click', function () {
+    carrito = Math.min(MAX_UNIDADES, carrito + cantidadSel);
+    actualizarContador();
+    abrirCheckout();
+  });
+
+  cartBtn.addEventListener('click', openDrawer);
+  $('drawerClose').addEventListener('click', closeDrawer);
+
+  overlay.addEventListener('click', function () {
+    if (modal.classList.contains('show')) cerrarCheckout(); else closeDrawer();
+  });
+
+  /* Checkout */
+  const orderForm = $('orderForm');
+
+  function envioActual() {
+    const v = orderForm.querySelector('input[name="entrega"]:checked').value;
+    return v === 'domicilio' ? ENVIO_DOMICILIO : 0;
+  }
+
+  function actualizarResumen() {
+    const sub = PRECIO * carrito;
+    const env = envioActual();
+    $('resCant').textContent = 'Cantidad: ' + carrito;
+    $('resSubtotal').textContent = fmt(sub);
+    $('resEnvio').textContent = env === 0 ? 'Gratis' : fmt(env);
+    $('resTotal').textContent = fmt(sub + env);
+    $('grupoDireccion').style.display = env === 0 ? 'none' : '';
+  }
+
+  function abrirCheckout() {
+    if (carrito === 0) return;
+    closeDrawer();
+    $('checkoutForm').style.display = '';
+    $('checkoutOk').classList.remove('show');
+    $('orderError').classList.remove('show');
+    actualizarResumen();
+    modal.classList.add('show');
+    overlay.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    lockScroll(true);
+  }
+
+  function cerrarCheckout() {
+    modal.classList.remove('show');
+    overlay.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    lockScroll(false);
+  }
+
+  $('btnCheckout').addEventListener('click', abrirCheckout);
+  $('modalClose').addEventListener('click', cerrarCheckout);
+  $('okCerrar').addEventListener('click', function () {
+    cerrarCheckout();
+    document.getElementById('ecodesk').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  orderForm.querySelectorAll('input[name="entrega"]').forEach(function (r) {
+    r.addEventListener('change', actualizarResumen);
+  });
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) cerrarCheckout();
+  });
+
+  orderForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const nombre = $('cNombre').value.trim();
+    const email = $('cEmail').value.trim();
+    const tel = $('cTel').value.trim();
+    const domicilio = envioActual() > 0;
+    const dir = $('cDir').value.trim();
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const telOk = tel.replace(/\D/g, '').length >= 7;
+    if (!nombre || !emailOk || !telOk || (domicilio && !dir)) {
+      $('orderError').classList.add('show');
+      return;
+    }
+    $('orderError').classList.remove('show');
+
+    const num = 'ECO-' + new Date().getFullYear() + '-' + String(Math.floor(1000 + Math.random() * 9000));
+    $('okNombre').textContent = nombre.split(' ')[0];
+    $('okEmail').textContent = email;
+    $('okPedido').textContent = 'Pedido ' + num;
+
+    $('checkoutForm').style.display = 'none';
+    $('checkoutOk').classList.add('show');
+    modal.querySelector('.modal-card').scrollTop = 0;
+
+    carrito = 0;
+    cantidadSel = 1;
+    $('qtyValor').textContent = 1;
+    actualizarContador();
+    orderForm.reset();
+  });
+
+  /* Tecla Escape */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    closeMenu();
+    if (modal.classList.contains('show')) cerrarCheckout();
+    else if (drawer.classList.contains('open')) closeDrawer();
   });
 
 })();
